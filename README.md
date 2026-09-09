@@ -1,4 +1,6 @@
-非洲之角nKm×nKm网格图 QGIS4.2.2
+非洲之角nKm×nKm网格图 
+制作：QGIS4.2.2
+文件'horn of africa_grid cell.zip'中包含呈现该图所需全部文件，下载完成后直接使用QGIS4.2.2打开文件'Horn_of_Africa_grid_25km and 50km.qgz'即可。
 #该说明书仅作记录操作之用。需要代码的部分已使用*标注并另起一行
 
 S1-加载非洲国家边界 attribute filtering then export

@@ -22,7 +22,7 @@ outcome:a layer named 'horn of africa_projected'
 S3-创建网格
 processing→toolbox→search'Creat grid'→grid type:Retangle→Grid extent:calculate from layer→select'horn of africa_projected'→horizontal spacing/vertical spacing:50km→run
 outcome:a layer named'Grid';a gridded layer covering horn of africa
-方法补充：裁剪网格的方式有三种，第一种是生成之后直接clip，优点是操作方便，缺点是小岛屿这类面积过小的区域被分割的很扭曲，遂放弃；第二种是生成网格后再在网格内生成centroid，再根据centroid生成网格单元（cell），优点是陆地能被完整保留且切割规整，缺点是有些小岛位于网格中心点之间，从grid到grid centroid之后中心点不落在小岛，根据中心点创建网格则小岛不被覆盖，并且因为这个原因，不规则的领土边缘也不被覆盖，遂放弃。该地图的目的是领土全覆盖，于是第三种是生成grid后select by location→grid→inersects→horn of africa_projected。只要有领土就保留cell，该方法能保证海岸、小岛全覆盖。
+方法补充：裁剪网格的方式有三种，第一种是生成之后直接clip，优点是操作方便，缺点是小岛屿这类面积过小的区域被分割的很扭曲，遂放弃；第二种是生成网格后再在网格内生成centroid，再根据centroid生成网格单元（cell），优点是陆地能被完整保留且切割规整，缺点是有些小岛位于网格中心点之间，从grid到grid centroid之后中心点不落在小岛，根据中心点创建网格则小岛不被覆盖，并且因为这个原因，不规则的领土边缘也不被覆盖，遂放弃。于是第三种是生成grid后select by location→grid→inersects→horn of africa_projected。只要有领土就保留cell，该方法能保证海岸、小岛全覆盖。
 
 S4-筛选网格
 processing-toolbox-select by location-select features from:'Grid'-where the features:intersect-by comparing to the features from:'horn of africa_projected'-layer of 'Grid'-save selected feature as...-保存'grid-horn of africa'

@@ -3,11 +3,13 @@
 
 S1-加载非洲国家边界 attribute filtering then export
 Natural Earth→Admin 0 Countries→下载ne_110m_admin_0_countries.shp(select Medium scale data,1:50m/cultural)→layer→add layer→add vector layer→选择上述文件
-click layer→open attribute table→select a feature using expression(Epsilon)
+路径1：click layer→open attribute table→select a feature using expression(Epsilon)
 *"ADMIN"IN('Sudan','South Sudan','Ethiopia','Eritrea',Djibouti','Somalia','Kenya','Somaliland')*
 select→layer→export→save selected feature as...→保存horn of africa
 outcome:a layer named'horn of afrcia'
 注：索马里兰属于地图的政治错误，具体处理流程详见S8
+路径2：直接在工具栏点击select features→save selected feature as...→保存为102022的'horn of africa_projected'
+
 
 S2-转换坐标系统 Reproject
 （这一步的目的是将地图的经纬单位转换为米制单位，以便后面制作网格图）

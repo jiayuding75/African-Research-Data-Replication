@@ -40,10 +40,18 @@ S8-处理地图当中政治错误的内容
 删除国家标签
 layer→properties→lables→Epsilon(near the value)→expression→
 *CASE
-WHEN "ADMIN"='Somaliland'
+WHEN "ADMIN"in('Somaliland','Somalia')
 THEN NULL
 ELSE "ADMIN"
 END*
 删除国家边界
 select features(select the target contries)-layer-toggle editing-Edit-edit geometry-merge selected features
+
+S9-处理地图后可能需要的步骤：移动国家标签
+建议新建一个只显示索马里标签的新图层，并且原图层不显示索马里和索马里兰
+*CASE
+WHEN"ADMIN"='Somalia'THEN'Somalia'
+ELSE NULL
+END*
+
 

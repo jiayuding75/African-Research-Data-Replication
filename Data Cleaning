@@ -1,0 +1,94 @@
+> dir.create("data/raw", recursive = TRUE, showWarnings = FALSE)
+> dir.create("data/processed", recursive = TRUE, showWarnings = FALSE)
+> dir.create("output/maps", recursive = TRUE, showWarnings = FALSE)
+> source_file <- file.choose()
+> file.copy(from = source_file, to = "data/raw/GEDEvent_v26_1.csv", overwrite = FALSE)
+file-new file-R script-ctrl+s-01_import_clean.R
+
+R Script:
+# Horn of Africa conflict analysis
+# Step 1: Import raw UCDP GED data
+
+>"readr" %in% rownames(installed.packages())
+if FALSE
+>install.packages("readr")
+if true
+R Script:
+library(readr)
+ged_raw <- readr::read_csv("data/raw/GEDEvent_v26_1.csv", show_col_types = FALSE)
+ctrl+enter
+
+>dim(ged_raw)
+>range(ged_raw$year, na.rm = TRUE)
+>sum(is.na(ged_raw$latitude))
+>sum(is.na(ged_raw$longitude))
+>sort(unique(ged_raw$country[grepl("somali", ged_raw$country, ignore.case = TRUE)]))
+该文件中不含索马里兰
+>hoa_countries <- c(
+  "Sudan",
+  "South Sudan",
+  "Eritrea",
+  "Djibouti",
+  "Ethiopia",
+  "Somalia",
+  "Kenya"
+)
+>hoa_countries %in% ged_raw$country
+>all(hoa_countries %in% ged_raw$country)
+
+R Script:
+sort(unique
+     (
+       ged_raw$country
+       [
+         grepl("somali", ged_raw$country, ignore.case = TRUE
+         )
+       ]
+     ))
+
+"Somaliland" %in% ged_raw$country
+
+>library(dplyr)
+hoa_ged <- ged_raw |>
+  filter(country %in% hoa_countries)
+>dim(hoa_ged)
+> table(hoa_ged$country)
+
+R script：
+# Define Horn of Africa countries
+hoa_countries <- c(
+  "Sudan"
+  ,
+  "South Sudan"
+  ,
+  "Eritrea"
+  ,
+  "Djibouti"
+  ,
+  "Ethiopia"
+  ,
+  "Somalia"
+  ,
+  "Kenya"
+)
+
+# Filter GED to Horn of Africa
+hoa_ged <- ged_raw |>
+  dplyr::filter(
+    country %in% hoa_countries,
+    year >= 2000,
+    year <= 2025
+  )
+# Check number of events by country
+table(hoa_ged$country)
+
+# Check year range
+range(hoa_ged$year, na.rm = TRUE)
+
+# Check missing coordinates
+sum(is.na(hoa_ged$latitude))
+sum(is.na(hoa_ged$longitude))
+
+> range(hoa_ged$year, na.rm = TRUE)
+> sum(is.na(hoa_ged$latitude))
+> sum(is.na(hoa_ged$longitude))
